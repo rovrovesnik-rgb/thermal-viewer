@@ -1,0 +1,47 @@
+[project]
+name = "thermal-viewer"
+version = "1.0.0"
+description = "P2Pro Thermal Camera Viewer with AI upscaling"
+readme = "README.md"
+requires-python = ">=3.11,<3.13"
+dependencies = [
+    # Core GUI
+    "PyQt6>=6.4.0",
+
+    # Video capture and image processing
+    # Use headless to avoid Qt conflicts with PyQt6
+    "opencv-python-headless>=4.8.0",
+    "numpy>=1.24.0",
+
+    # Real-time plotting for histograms
+    "pyqtgraph>=0.13.0",
+
+    # USB device enumeration and control
+    "pyudev>=0.24.0",
+    "pyusb>=1.2.0",
+
+    # GPU acceleration (OpenCL for AMD)
+    "pyopencl>=2023.1",
+
+    # Image export
+    "Pillow>=10.0.0",
+
+    # AI upscaling (Real-ESRGAN + Real-CUGAN with Vulkan backend for AMD GPUs)
+    "realesrgan-ncnn-py>=2.0.0",
+    "realcugan-ncnn-py>=2.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "ruff>=0.1.0",
+]
+
+[project.scripts]
+thermal-viewer = "main:run_application"
+
+[dependency-groups]
+dev = [
+    "pytest>=7.0.0",
+    "ruff>=0.1.0",
+]
